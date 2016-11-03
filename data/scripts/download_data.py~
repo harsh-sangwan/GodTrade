@@ -16,8 +16,8 @@ for rows in range(0, len(symbols)):
         symbol = symbols[rows]
         stock_symbol = symbol + ".NS"
         stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-        filename = '../NSE/Cap-Size/' + symbol + '.csv'
-        stock_prices.to_csv(filename)
+	    filename = '../NSE/Cap-Size/' + symbol + '.csv'
+	    stock_prices.to_csv(filename)
     except Exception, arg:
         print("Error downloading symbol:"+str(symbol))
         print(str(arg))
