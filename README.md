@@ -38,6 +38,13 @@ TA can further be used with commodities, currencies...
 -> On getting the data, correlation has to be found as to find if positive correlations (move together) or negative correlations (move oppositely)
 
 
+5. Start implementing Machine Learning algorithms from basics like regression to advanced algos like Neural nets, deep nets etc..
+Maintain the codebase in ML
+
+6. Start implementing Financial models stochastics [SDE, PDE], Greeks etc... Maintain the codebase in Fin Models 
+
+7. Start implementing statistical analysis of data . arima etc... maintain the code base in SAFD
+
 **As we keep getting more insights & knowledge into the trading world, we will keep adding more functionalities
 
 ** Our FINAL aim is to actively trade(seconds) throughout multiple markets[Commodities, Currencies, F&O, Equities](globally) through all sectors.. and we need to accordingly build good algorithms .. 'coz we are too lazy and don't trust our psychology that much to trade on our own .. :P
