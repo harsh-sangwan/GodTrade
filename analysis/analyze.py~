@@ -67,7 +67,7 @@ for rows in range(0, len(symbols)):
 		start_date1 = "2016-10-31"
 		tmp_margin = price_change(filedata,start_date,end_date)
 		margin.update({symbol:tmp_margin})
-		tmp_margin1 = price_change(filedata,start_date1,end_date)
+	    tmp_margin1 = price_change(filedata,start_date1,end_date)
 		margin1.update({symbol:tmp_margin1})
 	
 	except Exception, arg:
