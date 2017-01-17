@@ -1,0 +1,142 @@
+[
+	{
+		"_id": 1,
+		"name":	"Allison Cooper",
+		"latitude": 12.921341,
+		"longitude": -2.1212412
+	},
+
+	{
+		"_id": 2,
+		"name":	"Bob Cooper",
+		"latitude": 11.921341,
+		"longitude": -1.01212412
+	},
+
+	{
+		"_id": 3,
+		"name":	"Buck Wild",
+		"latitude": 15.001341,
+		"longitude": 1.01212412
+	},
+
+	{
+		"_id": 4,
+		"name":	"Chuck Mild",
+		"latitude": 0.0101341,
+		"longitude": -3.01212412
+	},
+
+	{
+		"_id": 5,
+		"name":	"Harry Wartz",
+		"latitude": 12.961111573,
+		"longitude": 77.636220001
+	},
+
+	{
+		"_id": 6,
+		"name":	"Chug Ban",
+		"latitude": 16.971341,
+		"longitude": 18.9812412
+	},
+
+	{
+		"_id": 7,
+		"name":	"Lucky Charm",
+		"latitude": 19.021341,
+		"longitude": 19.2212412
+	},
+
+	{
+		"_id": 8,
+		"name":	"Cutting Knife",
+		"latitude": 12.961111569,
+		"longitude": 77.6362201
+	},
+
+	{
+		"_id": 9,
+		"name":	"Man Diego",
+		"latitude": 19.121341,
+		"longitude": -24.21212412
+	},
+
+	{
+		"_id": 10,
+		"name":	"Sandy Bergs",
+		"latitude": 25.23341,
+		"longitude": 12.312412
+	},
+
+	{
+		"_id": 11,
+		"name":	"Tom Cruise",
+		"latitude": 10.01401341,
+		"longitude": -14.22212412
+	},
+
+	{
+		"_id": 12,
+		"name":	"Dick Tucker",
+		"latitude": 11.231341,
+		"longitude": 4.3212412
+	},
+
+	{
+		"_id": 13,
+		"name":	"Shoo AM",
+		"latitude": 12.96111571,
+		"longitude": 77.6362209
+	},
+
+	{
+		"_id": 14,
+		"name":	"Neils Bohr",
+		"latitude": 10.011341,
+		"longitude":15.02312412
+	},
+
+	{
+		"_id": 15,
+		"name":	"Albert Einstein",
+		"latitude": 12.96111571,
+		"longitude": 77.6362214
+	},
+
+	{
+		"_id": 16,
+		"name":	"Kitty Chase",
+		"latitude": 19.031341,
+		"longitude": -2.43212412
+	},
+
+	{
+		"_id": 17,
+		"name":	"tom Shanks",
+		"latitude": 10.0012341,
+		"longitude": -9.01002412
+	},
+
+	{
+		"_id": 18,
+		"name":	"Chase vin",
+		"latitude": 17.001341,
+		"longitude": -1.01762412
+	},
+
+	{
+		"_id": 19,
+		"name":	"chuckey cheese",
+		"latitude": 12.96111502,
+		"longitude": 77.6362214
+	},
+
+	{
+		"_id": 20,
+		"name":	"Bear Grylls",
+		"latitude": 12.001341,
+		"longitude": 77.01212412
+	}
+
+]

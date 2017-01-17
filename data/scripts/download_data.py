@@ -1,236 +1,84 @@
 import pandas_datareader.data as web
 from datetime import datetime
 import pandas as pd
+import os
+from nsepy import get_history
 
-
-start = datetime(1900, 1, 1)	#(YYYY, MM, DD)
-end   = datetime(2016, 11, 3)
-
-'''
-#Download Nifty500 stocks
-nse = pd.read_csv('NSE/ind_nifty500list.csv')
-symbols = nse[nse.columns[2]]
-
-for rows in range(0, len(symbols)):
-    try:
-        symbol = symbols[rows]
-        stock_symbol = symbol + ".NS"
-        stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-        filename = '../NSE/Cap-Size/' + symbol + '.csv'
-        stock_prices.to_csv(filename)
-    except Exception, arg:
-        print("Error downloading symbol:"+str(symbol))
-        print(str(arg))
-        continue
-        
-'''
-
-#Download Nifty Indices
-nse = pd.read_csv('NSE/nifty_indices.csv')
-symbols = nse[nse.columns[1]]
-
-for rows in range(0, len(symbols)):
+def download_data(start_date, end_date, symbol, output_directory):
 	try:
-		symbol = symbols[rows]
-		stock_symbol = symbol
-		stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-		filename = '../NSE/Indices/' + symbol + '.csv'
-		stock_prices.to_csv(filename)
+	        	
+	    stock_symbol = symbol
+	    #stock_prices = get_history(symbol=symbol, start=start_date, end=end_date)
+	    stock_prices = web.DataReader(stock_symbol, "yahoo", start_date, end_date)
+	    output_file  = output_directory + symbol + '.csv'
+
+	    if not os.path.exists(os.path.dirname(output_file)):
+			try:
+				os.makedirs(os.path.dirname(output_file))
+				#stock_prices.to_csv(output_file)
+			except OSError as exc:
+				if exc.errno != errno.EEXIST:
+					raise
+	    		
+	    stock_prices.to_csv(output_file)
+
 	except Exception, arg:
-        	print("Error downloading - Indices ; symbol:"+str(symbol))
-        	print(str(arg))
-
-
-#Download Nifty Energy stocks
-nse = pd.read_csv('NSE/ind_niftyenergylist.csv')
-symbols = nse[nse.columns[2]]
-
-for rows in range(0, len(symbols)):
-	try:
-		symbol = symbols[rows]
-		stock_symbol = symbol + ".NS"
-		stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-		filename = '../NSE/Sectors/Energy/' + symbol + '.csv'
-		stock_prices.to_csv(filename)
-	except Exception, arg:
-        	print("Error downloading - Energy ; symbol:"+str(symbol))
-        	print(str(arg))
-'''
-
-#Download Nifty Auto stocks
-nse = pd.read_csv('NSE/ind_niftyautolist.csv')
-symbols = nse[nse.columns[2]]
-
-for rows in range(0, len(symbols)):
-	try:
-		symbol = symbols[rows]
-		stock_symbol = symbol + ".NS"
-		stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-		filename = '../NSE/Sectors/Auto/' + symbol + '.csv'
-		stock_prices.to_csv(filename)
-	except Exception, arg:
-        	print("Error downloading -Auto ; symbol:"+str(symbol))
-        	print(str(arg))
-
-
-#Download Nifty Bank stocks
-nse = pd.read_csv('NSE/ind_niftybanklist.csv')
-symbols = nse[nse.columns[2]]
-
-for rows in range(0, len(symbols)):
-	try:
-		symbol = symbols[rows]
-		stock_symbol = symbol + ".NS"
-		stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-		filename = '../NSE/Sectors/Bank/' + symbol + '.csv'
-		stock_prices.to_csv(filename)
-	except Exception, arg:
-        	print("Error downloading - Bank ; symbol:"+str(symbol))
-        	print(str(arg))
+	    print("Error downloading from yahoo ; symbol:"+str(symbol))
+	    print(str(arg))
 
 
 
-#Download Nifty Finance stocks
-nse = pd.read_csv('NSE/ind_niftyfinancelist.csv')
-symbols = nse[nse.columns[2]]
-
-for rows in range(0, len(symbols)):
-	try:
-		symbol = symbols[rows]
-		stock_symbol = symbol + ".NS"
-		stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-		filename = '../NSE/Sectors/Finance/' + symbol + '.csv'
-		stock_prices.to_csv(filename)
-	except Exception, arg:
-        	print("Error downloading - Finance ; symbol:"+str(symbol))
-        	print(str(arg))
-
-
-#Download Nifty FMCG stocks
-nse = pd.read_csv('NSE/ind_niftyfmcglist.csv')
-symbols = nse[nse.columns[2]]
-
-for rows in range(0, len(symbols)):
-	try:
-		symbol = symbols[rows]
-		stock_symbol = symbol + ".NS"
-		stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-		filename = '../NSE/Sectors/FMCG/' + symbol + '.csv'
-		stock_prices.to_csv(filename)
-	except Exception, arg:
-        	print("Error downloading - FMCG ; symbol:"+str(symbol))
-        	print(str(arg))
-
-
-#Download Nifty IT stocks
-nse = pd.read_csv('NSE/ind_niftyitlist.csv')
-symbols = nse[nse.columns[2]]
-
-for rows in range(0, len(symbols)):
-	try:
-		symbol = symbols[rows]
-		stock_symbol = symbol + ".NS"
-		stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-		filename = '../NSE/Sectors/IT/' + symbol + '.csv'
-		stock_prices.to_csv(filename)
-	except Exception, arg:
-        	print("Error downloading - IT ; symbol:"+str(symbol))
-        	print(str(arg))
-
-
-#Download Nifty Media stocks
-nse = pd.read_csv('NSE/ind_niftymedialist.csv')
-symbols = nse[nse.columns[2]]
-
-for rows in range(0, len(symbols)):
-	try:
-		symbol = symbols[rows]
-		stock_symbol = symbol + ".NS"
-		stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-		filename = '../NSE/Sectors/Media/' + symbol + '.csv'
-		stock_prices.to_csv(filename)
-	except Exception, arg:
-        	print("Error downloading - Media ; symbol:"+str(symbol))
-        	print(str(arg))
-
-
-#Download Nifty Metal stocks
-nse = pd.read_csv('NSE/ind_niftymetallist.csv')
-symbols = nse[nse.columns[2]]
-
-for rows in range(0, len(symbols)):
-	try:
-		symbol = symbols[rows]
-		stock_symbol = symbol + ".NS"
-		stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-		filename = '../NSE/Sectors/Metal/' + symbol + '.csv'
-		stock_prices.to_csv(filename)
-	except Exception, arg:
-        	print("Error downloading - Metal ; symbol:"+str(symbol))
-        	print(str(arg))
-
+def save_data(start_date, end_date, symbol_file, symbols_colnum, output_directory):
+	df = pd.read_csv(symbol_file, header=0)
+	print df
+	symbols = df[df.columns[symbols_colnum]]
 	
-#Download Nifty Pharma stocks
-nse = pd.read_csv('NSE/ind_niftypharmalist.csv')
-symbols = nse[nse.columns[2]]
-
-for rows in range(0, len(symbols)):
-	try:
+	for rows in range(0, len(symbols)):
 		symbol = symbols[rows]
-		stock_symbol = symbol + ".NS"
-		stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-		filename = '../NSE/Sectors/Pharma/' + symbol + '.csv'
-		stock_prices.to_csv(filename)
-	except Exception, arg:
-        	print("Error downloading - Pharma ; symbol:"+str(symbol))
-        	print(str(arg))
+		download_data(start_date, end_date, symbol+".NS", output_directory)
+		
 
 
-#Download Nifty Private-Bank stocks
-nse = pd.read_csv('NSE/ind_nifty_privatebanklist.csv')
-symbols = nse[nse.columns[2]]
+if __name__ == "__main__":
+ 
+ 	now = datetime.now()
+ 	
+	start = datetime(1900, 1, 1)	#(YYYY, MM, DD)
+	end   = datetime(now.year, now.month, now.day)
+	
+	nse_cap_size_symbols = 'NSE/ind_nifty500list.csv'
+	bse_cap_size_symbols = 'bse500.csv'
 
-for rows in range(0, len(symbols)):
-	try:
-		symbol = symbols[rows]
-		stock_symbol = symbol + ".NS"
-		stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-		filename = '../NSE/Sectors/Private_Bank/' + symbol + '.csv'
-		stock_prices.to_csv(filename)
-	except Exception, arg:
-        	print("Error downloading - Private-Bank ; symbol:"+str(symbol))
-        	print(str(arg))
+	nse_cap_size_op_dir	 = '../NSE/Cap-Size/'
+	bse_cap_size_op_dir	 = '../BSE/Cap-Size/'
 
+	nifty_index  = 'NSE/nifty_indices.csv'
+	nifty_op_dir = '../NSE/Indices/'
+	bse_op_dir = '../BSE/Indices/'
 
-#Download Nifty PSU-Bank stocks
-nse = pd.read_csv('NSE/ind_niftypsubanklist.csv')
-symbols = nse[nse.columns[2]]
+	nse_sectors = ['energy', 'auto', 'bank', 'finance', 'fmcg', 'it', 'media', 'metal', 'pharma', '_privatebank', 'psubank', 'realty'] 
+	
+	#Download Cap-Size data - NSE
+	#save_data(start, end, nse_cap_size_symbols, 2, nse_cap_size_op_dir)
+	
+	#Download Nifty50
+	#download_data(start, end, '^NSEI', nifty_op_dir)
 
-for rows in range(0, len(symbols)):
-	try:
-		symbol = symbols[rows]
-		stock_symbol = symbol + ".NS"
-		stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-		filename = '../NSE/Sectors/PSU_Bank/' + symbol + '.csv'
-		stock_prices.to_csv(filename)
-	except Exception, arg:
-        	print("Error downloading - PSU-Bank ; symbol:"+str(symbol))
-        	print(str(arg))
+	#Download Nifty500
+	#download_data(start, end, '^CRSLDX', nifty_op_dir)
 
+	#Download Sensex30
+	download_data(start, end, '^BSESN', bse_op_dir)
 
-#Download Nifty Realty stocks
-nse = pd.read_csv('NSE/ind_niftyrealtylist.csv')
-symbols = nse[nse.columns[2]]
+	#Download Cap-Size data - BSE
+	save_data(start, end, bse_cap_size_symbols, 1, bse_cap_size_op_dir)
 
-for rows in range(0, len(symbols)):
-	try:
-		symbol = symbols[rows]
-		stock_symbol = symbol + ".NS"
-		stock_prices = web.DataReader(stock_symbol, "yahoo", start, end)
-		filename = '../NSE/Sectors/Realty/' + symbol + '.csv'
-		stock_prices.to_csv(filename)
-	except Exception, arg:
-        	print("Error downloading - Realty ; symbol:"+str(symbol))
-        	print(str(arg))
-'''
+	#Download NSE sectors 
+	#for i in xrange(len(nse_sectors)):
+	#	save_data(start, end, 'NSE/ind_nifty'+str(nse_sectors[i])+'list.csv', 2, '../NSE/Sectors/'+nse_sectors[i]+'/')
 
+	#Download Moneycontrol_Industries
+	'''moneycontrol_path = "../NSE/Moneycontrol_Industries/"
+	for name in os.listdir(moneycontrol_path):
+		if name != ".DS_Store":
+			save_data(start, end, moneycontrol_path+str(name)+'/stocks_list.csv', 1, moneycontrol_path+str(name)+'/')'''
