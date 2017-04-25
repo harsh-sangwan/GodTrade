@@ -9,7 +9,7 @@ def download_data(start_date, end_date, symbol, output_directory):
 	        	
 	    stock_symbol = symbol
 	    #stock_prices = get_history(symbol=symbol, start=start_date, end=end_date)
-	    stock_prices = web.DataReader(stock_symbol, "yahoo", start_date, end_date)
+	    stock_prices = web.DataReader(stock_symbol.encode('utf-8'), "yahoo", start_date, end_date)
 	    output_file  = output_directory + symbol + '.csv'
 
 	    if not os.path.exists(os.path.dirname(output_file)):
@@ -28,14 +28,16 @@ def download_data(start_date, end_date, symbol, output_directory):
 
 
 
-def save_data(start_date, end_date, symbol_file, symbols_colnum, output_directory):
+def save_data(start_date, end_date, symbol_file, symbols_colnum, mrkt, output_directory):
 	df = pd.read_csv(symbol_file, header=0)
 	print df
 	symbols = df[df.columns[symbols_colnum]]
 	
 	for rows in range(0, len(symbols)):
 		symbol = symbols[rows]
-		download_data(start_date, end_date, symbol+".NS", output_directory)
+		download_data(start_date, end_date, str(symbol)+mrkt, output_directory)
+		if rows%20 == 0:
+			print 'Downloaded ' + str(symbol)+mrkt
 		
 
 
@@ -47,7 +49,7 @@ if __name__ == "__main__":
 	end   = datetime(now.year, now.month, now.day)
 	
 	nse_cap_size_symbols = 'NSE/ind_nifty500list.csv'
-	bse_cap_size_symbols = 'bse500.csv'
+	bse_cap_size_symbols = 'BSE/bse500.csv'
 
 	nse_cap_size_op_dir	 = '../NSE/Cap-Size/'
 	bse_cap_size_op_dir	 = '../BSE/Cap-Size/'
@@ -59,19 +61,19 @@ if __name__ == "__main__":
 	nse_sectors = ['energy', 'auto', 'bank', 'finance', 'fmcg', 'it', 'media', 'metal', 'pharma', '_privatebank', 'psubank', 'realty'] 
 	
 	#Download Cap-Size data - NSE
-	#save_data(start, end, nse_cap_size_symbols, 2, nse_cap_size_op_dir)
+	save_data(start, end, nse_cap_size_symbols, 2, '.NS', nse_cap_size_op_dir)
 	
 	#Download Nifty50
-	#download_data(start, end, '^NSEI', nifty_op_dir)
+	download_data(start, end, '^NSEI', nifty_op_dir)
 
 	#Download Nifty500
-	#download_data(start, end, '^CRSLDX', nifty_op_dir)
+	download_data(start, end, '^CRSLDX', nifty_op_dir)
 
 	#Download Sensex30
 	download_data(start, end, '^BSESN', bse_op_dir)
 
 	#Download Cap-Size data - BSE
-	save_data(start, end, bse_cap_size_symbols, 1, bse_cap_size_op_dir)
+	save_data(start, end, bse_cap_size_symbols, 3, '.BO', bse_cap_size_op_dir)
 
 	#Download NSE sectors 
 	#for i in xrange(len(nse_sectors)):
